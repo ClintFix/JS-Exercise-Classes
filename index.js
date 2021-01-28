@@ -130,7 +130,6 @@ class Airplane {
    speak() {
      return `Hello my name is ${this.name}, I am from ${this.location}.`;
    }
-    
   }
   
   /*
@@ -147,9 +146,33 @@ class Airplane {
           + `demo` receives a `subject` string as an argument and returns the phrase 'Today we are learning about {subject}' where subject is the param passed in.
           + `grade` receives a `student` object and a `subject` string as arguments and returns '{student.name} receives a perfect score on {subject}'
   */
- class Instructor {
+ class Instructor extends Lambdasian{
+   constructor(instAttrs){
+     super(instAttrs); 
+     this.specialty = instAttrs.specialty;
+     this.favLanguage = instAttrs.favLanguage;
+     this.catchPhrase = instAttrs.catchPhrase;
+   }
 
+   demo(subject){
+     return `Today we are learning about ${subject}`;
+   }
+
+   grade(studentObj, subject){
+     return `${studentObj.name} receives a perfect score on ${subject}`;
+   }
  }
+ const brit = new Instructor ({
+   name: 'Brit',
+   age: '25',
+   location: 'Canada',
+   specialty: 'JavaScript',
+   favLanguage: 'French',
+   catchPhrase: 'You got this!',
+ });
+
+ console.log(brit.demo('React'));
+ console.log(brit.grade({name: 'Clint'},'JavaScript'));
   /*
     TASK 5
       - Write a Student class extending Lambdasian.
