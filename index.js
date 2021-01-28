@@ -80,8 +80,33 @@ class Airplane {
   */
   
  class Car {
-    
+    constructor(model, milesPerGallon) {
+      this.model = model;
+      this.milesPerGallon = milesPerGallon;
+      this.tank = 0;
+      this.odometer = 0;
+    }
+
+    fill(gallons){
+      this.tank += gallons;
+    }
+
+    drive(distance){
+      if ((distance / this.milesPerGallon) <= this.tank){ //if gallons used to drive distance is less than or equal to gallons available, increment odometer and decrement tank
+        this.odometer += distance;
+        this.tank -= (distance / this.milesPerGallon);
+      } else {
+        this.odometer += (this.milesPerGallon * this.tank); // MPG * Tank = max drivable miles
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles!`;
+      }
+    }
   }
+
+  const beater = new Car('sunbird', 30);
+  beater.fill(10);
+  console.log(beater.drive(301));
+
   
   /*
     TASK 3
