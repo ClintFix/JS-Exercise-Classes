@@ -173,6 +173,7 @@ class Airplane {
 
  console.log(brit.demo('React'));
  console.log(brit.grade({name: 'Clint'},'JavaScript'));
+
   /*
     TASK 5
       - Write a Student class extending Lambdasian.
@@ -188,10 +189,44 @@ class Airplane {
           + `PRAssignment` a method that receives a subject as an argument and returns `student.name has submitted a PR for {subject}`
           + `sprintChallenge` similar to PRAssignment but returns `student.name has begun sprint challenge on {subject}`
   */
- class Student {
-     
+ class Student extends Lambdasian{
+   constructor(attributes){
+     super(attributes);
+     this.previousBackground = attributes.previousBackground;
+     this.className = attributes.className;
+     this.favSubjects = attributes.favSubjects;
+   }  
+
+   listSubjects(){
+     let subjects = `Loving `;
+     this.favSubjects.forEach(item => subjects += (item + ", "));
+     return subjects;
+   }
+
+   PRAssignment(subject){
+     return `${this.name} has submitted a PR for ${subject}`;
+   }
+
+   sprintChallenge(subject){
+    return `${this.name} has begun sprint challenge on ${subject}`;
+   }
  }
   
+ const smartKid = new Student({
+  name: 'Clint',
+  age: '34',
+  location: 'Colorado',
+  specialty: 'JavaScript',
+  favLanguage: 'English',
+  catchPhrase: 'You got this!',
+  previousBackground: 'Mechanical Engineer',
+  className: 'web40',
+  favSubjects: ['JS', 'HTML', 'CSS', 'React'],
+ });
+
+ console.log(smartKid.favSubjects);
+ console.log(smartKid.listSubjects());
+
   /*
     TASK 6
       - Write a ProjectManager class extending Instructor.
@@ -205,8 +240,20 @@ class Airplane {
           + `standUp` a method that takes in a slack channel and returns `{name} announces to {channel}, @channel standy times!`
           + `debugsCode` a method that takes in a student object and a subject and returns `{name} debugs {student.name}'s code on {subject}`
   */
- class ProjectManager {
-     
+ class ProjectManager extends Instructor {
+   constructor(attributes){
+     super(attributes);
+     this.gradClassName = attributes.gradClassName;
+     this.favInstructor = attributes.favInstructor;
+   }
+
+   standUp(slackChannel){
+     return `${this.name} announces to ${slackChannel}, @channel standy times!`;
+   }
+
+   debugsCode(studentObj, subject){
+     return `${this.name} debugs ${studentObj.name}'s code on ${subject}`;
+   }
  }
   /*
     STRETCH PROBLEM (no tests!)
